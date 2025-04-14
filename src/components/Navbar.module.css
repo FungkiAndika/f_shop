@@ -1,0 +1,54 @@
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    user-select: none;
+    flex-direction: row;
+    width: 96%;
+    padding: 2%;
+    background-color: rgb(72, 23, 187);
+}
+.title {
+    margin-left: 10px;
+    color: white;
+}
+.link_container {
+    display: flex;
+    margin-right: 10px;
+    flex-direction: row;
+    align-self: center;
+    gap: 10px;
+}
+.link {
+    color: white;
+    text-decoration: none;
+}
+.link:hover {
+    color: rgb(187, 23, 50);
+}
+.link:active {
+    color: rgb(85, 13, 25);
+    -webkit-tap-highlight-color: transparent;
+}
+
+ 
+
+@media screen and (min-width: 1200px) {
+    .container {
+        font-size: 110%;
+        width: 98%;
+        padding: 1%;
+    }
+}
+@media screen and (min-width: 768px) and (max-width: 1199px) {
+    .container {
+        font-size: 105%;
+        width: 98%;
+        padding: 1%;
+    }
+}
+@media screen and (max-width: 767px) {
+    .container {
+        font-size: 100%;
+    }
+}

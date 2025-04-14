@@ -1,0 +1,6 @@
+.search {
+    --padding: 14px;
+    display: flex;
+    align-items: center;
+    padding: var(--padding);
+}
