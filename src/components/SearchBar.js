@@ -10,7 +10,7 @@ function SearchBar() {
     const [inputValue, setInputValue] = useState("")
     const handlerInputChange = (e) => {
         console.log(e.target.value)
-        setInputValue(e.target.value)
+        setInputValue(e.target.value.toString())
     }
     useEffect(() => {
         async function productTitles() {
@@ -20,6 +20,9 @@ function SearchBar() {
         }
         productTitles()
     }, [])
+    function escapeRegExp(string) {
+      return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    }
   return (
     <div className={styles.container}>
       <div className={styles.search}>
@@ -27,7 +30,12 @@ function SearchBar() {
         <input type="search" className={styles.search_input} value={inputValue} onChange={handlerInputChange} placeholder="Search" />
       </div>
       <div>
-        {titles.filter(a => (new RegExp(inputValue, "i")).test(a)).map((index) => inputValue === "" ? false : (<p>{index}</p>))}
+        {titles.filter(a => {
+          if (!inputValue) return false;
+          if (!/^[^()]+$/.test(a)) return false;
+          const safeInput = escapeRegExp(inputValue);
+          return new RegExp(safeInput, "i").test(a)
+        }).map((index, id) => inputValue === "" ? false : (<p key={id}>{index}</p>))}
       </div>
     </div>
   );
