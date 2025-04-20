@@ -4,6 +4,7 @@ function Home() {
     return (
         <>
             <SearchBar/>
+            <p>fasafafafafasfasf sfasfasfassfasfasfssssssssssssssssssssszg xghdckfkfffffffffffff ffffffffffffssss</p>
         </>
     );
 };

@@ -14,6 +14,8 @@ function SearchBar() {
       const data = await getProduct();
       const title = data.products.map((a) => a.title);
       setTitles(title);
+      console.log([...new Set(data.products.map((a) => a.tags))]);
+      
     }
     productTitles();
   }, []);
@@ -23,7 +25,8 @@ function SearchBar() {
   return (
     <div className={styles.container}>
       <div className={styles.search}>
-        <span className="material-symbols-outlined">search</span>
+        
+        <span className="material-symbols-outlined icon">search</span>
         <input
           type="search"
           className={styles.search_input}
@@ -32,7 +35,7 @@ function SearchBar() {
           placeholder="Search"
         />
       </div>
-      <div>
+      <div className={styles.sugestion}>
         {titles
           .filter((a) => {
             if (!inputValue) return false;
