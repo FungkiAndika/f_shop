@@ -3,21 +3,23 @@ import getProduct from "../utils/api/productAPI";
 import { useState, useEffect } from "react";
 
 function SearchBar() {
-  const [titles, setTitles] = useState([]);
+  const [sugest, setSugest] = useState([]);
   const [inputValue, setInputValue] = useState("");
   const handlerInputChange = (e) => {
     console.log(e.target.value);
     setInputValue(e.target.value.toString());
   };
   useEffect(() => {
-    async function productTitles() {
+    async function product() {
       const data = await getProduct();
       const title = data.products.map((a) => a.title);
-      setTitles(title);
-      console.log([...new Set(data.products.map((a) => a.tags))]);
-      
+      const desc = data.products.map((a) => a.description);
+      const category = data.products.map((a) => a.category);
+      const tags = data.products.map((a) => a.tags)
+      const brand = data.products.map((a) => a.brand)
+      setSugest([ ...new Set([...title, ...desc, ...category, ...tags, ...brand])])
     }
-    productTitles();
+    product();
   }, []);
   function escapeRegExp(string) {
     return string.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
@@ -25,7 +27,6 @@ function SearchBar() {
   return (
     <div className={styles.container}>
       <div className={styles.search}>
-        
         <span className="material-symbols-outlined icon">search</span>
         <input
           type="search"
@@ -36,7 +37,7 @@ function SearchBar() {
         />
       </div>
       <div className={styles.sugestion}>
-        {titles
+        {sugest
           .filter((a) => {
             if (!inputValue) return false;
             if (!/^[^()]+$/.test(a)) return false;
