@@ -1,5 +1,6 @@
 .container {
     display: flex;
+    position: fixed;
     align-items: center;
     justify-content: space-between;
     user-select: none;

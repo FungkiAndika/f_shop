@@ -1,0 +1,58 @@
+.cateContain {
+    display: flex;
+    flex-direction: column;
+    user-select: none;
+}
+.prevImageDin {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(26, 23, 187);
+}
+.buttonContain {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    background-color: rgb(228, 228, 228);
+}
+.category {
+    padding: 10px;
+    border-radius: 15px;
+    background-color: #ffffff;
+    outline: none;
+    border: none;
+    margin: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    -ms-border-radius: 15px;
+    -o-border-radius: 15px;
+}
+.category:hover {
+    background-color: rgb(72, 23, 187);
+    color: white;
+}
+.category:active {
+    background-color: rgba(72, 23, 187, 0.527);
+    box-shadow: none;
+}
+@media screen and (min-width: 1200px) {
+    .cateContain {
+        margin-top: 9%;
+    }
+}
+@media screen and (min-width: 768px) and (max-width: 1199px) {
+    .cateContain {
+        margin-top: 14%;
+    }
+}
+@media screen and ( max-width: 767px) {
+    .cateContain {
+        margin-top: 29%;
+    }
+}
