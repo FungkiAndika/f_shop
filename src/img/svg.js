@@ -24,4 +24,5 @@ function GroceriesSvg(param) {
     
 }
 
+
 export default GroceriesSvg;
