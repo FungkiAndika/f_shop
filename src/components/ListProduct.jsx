@@ -41,7 +41,7 @@ export default function ListProduct() {
             <div className={styles.imgPrevContain}>
             <img src={a.image} alt={a.title} className={styles.imgPrev} />
             </div>
-            <p className={styles.prodPrice}>{currencyCode} {Math.ceil(a.price*priceEx).toLocaleString(userCountry)}</p><br></br>
+            <p className={styles.prodPrice}>{currencyCode} {Math.ceil(a.price*priceEx).toLocaleString(userCountry)}</p>
             <p className={styles.prodTitle} >{a.title}</p>
         </div>)
     )
