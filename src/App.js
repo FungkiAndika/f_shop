@@ -1,5 +1,4 @@
 import './App.css';
-import { Analytics } from "@vercel/analytics/react";
 
 import Navbar from './components/Navbar';
 
