@@ -3,7 +3,7 @@ import checkCountry from "../utils/api/checkCountryAPI";
 import convertCurrency from "../features/convertCurrency";
 import { useState, useEffect } from "react";
 import styles from "../pages/Home.module.css"
-export default function ListProduct() {
+export default function ListProduct(sortType) {
     const [product, setProduct] = useState([])
     const [userCountry, setUserCountry] = useState([])
     const [priceEx, setPriceEx] = useState([])
@@ -14,11 +14,11 @@ export default function ListProduct() {
             const title = product.products.map(a => Object({
                 title: a.title,
                 image: a.images[0],
-                price: a.price
+                price: a.price,
+                category: a.category
             }))
             // const image = [...new Set([...product.products.map(a => a.images).map(a => a[0])])]
             setProduct(title)
-            
         }
         async function co() {
             const country = await checkCountry();
@@ -31,13 +31,26 @@ export default function ListProduct() {
             setPriceEx(rate)
             setUserCountry(country)
         }
+        
         co()
         prod()
-    },[]);
-    console.log(priceEx);
+    },[sortType]);
+    console.log(
+        product.filter(a => a.category === "beauty").map(a => a.price),
+    );
+   
     
-    return (
-        product.map((a,b) => <div key={b} className={styles.boxProduct}>
+    if (sortType === "none") {
+        return product.map((a,b) => <div key={b} className={styles.boxProduct}>
+            <div className={styles.imgPrevContain}>
+            <img src={a.image} alt={a.title} className={styles.imgPrev} />
+            </div>
+            <p className={styles.prodTitle} >{a.title}</p>
+            <p className={styles.prodPrice}>{currencyCode} {Math.round(a.price*priceEx).toLocaleString(userCountry)}</p>
+        </div>)
+    } else {
+        return (
+        product.filter(a => a.category === sortType).map((a,b) => <div key={b} className={styles.boxProduct}>
             <div className={styles.imgPrevContain}>
             <img src={a.image} alt={a.title} className={styles.imgPrev} />
             </div>
@@ -45,6 +58,7 @@ export default function ListProduct() {
             <p className={styles.prodPrice}>{currencyCode} {Math.round(a.price*priceEx).toLocaleString(userCountry)}</p>
         </div>)
     )
+    }
     
     
     
