@@ -5,7 +5,7 @@ async function checkCountry() {
             throw new Error(`HTTP error! status: ${res.status}`);
         }
         const country = await res.json()
-        return country.countryCode
+        return country.country_code
     } catch (error) {
         console.log("ERROR IN: checkCountry");
         
