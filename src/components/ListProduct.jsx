@@ -26,7 +26,6 @@ export default function ListProduct(sortType) {
             const rates = await convertCurrency();
             const countryCode = code.countries.country.filter(a => a.countryCode === country).map(a => a.currencyCode).join();
             const rate = rates.rates[countryCode]
-            console.log(code);
             setCurrencyCode(countryCode)
             setPriceEx(rate)
             setUserCountry(country)
@@ -35,15 +34,12 @@ export default function ListProduct(sortType) {
         co()
         prod()
     },[sortType]);
-    console.log(
-        product.filter(a => a.category === "beauty").map(a => a.price),
-    );
    
     
     if (sortType === "none") {
         return product.map((a,b) => <div key={b} className={styles.boxProduct}>
             <div className={styles.imgPrevContain}>
-            <img src={a.image} alt={a.title} className={styles.imgPrev} />
+            <img rel="preload" src={a.image} alt={a.title} className={styles.imgPrev} />
             </div>
             <p className={styles.prodTitle} >{a.title}</p>
             <p className={styles.prodPrice}>{currencyCode} {Math.round(a.price*priceEx).toLocaleString(userCountry)}</p>
@@ -52,7 +48,7 @@ export default function ListProduct(sortType) {
         return (
         product.filter(a => a.category === sortType).map((a,b) => <div key={b} className={styles.boxProduct}>
             <div className={styles.imgPrevContain}>
-            <img src={a.image} alt={a.title} className={styles.imgPrev} />
+            <img rel="preload" src={a.image} alt={a.title} className={styles.imgPrev} />
             </div>
             <p className={styles.prodTitle} >{a.title}</p>
             <p className={styles.prodPrice}>{currencyCode} {Math.round(a.price*priceEx).toLocaleString(userCountry)}</p>
