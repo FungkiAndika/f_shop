@@ -8,7 +8,6 @@ async function checkCountry() {
         return country.country_code
     } catch (error) {
         console.log("ERROR IN: checkCountry");
-        
     }
 }
 export default checkCountry;
