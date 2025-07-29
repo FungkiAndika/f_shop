@@ -11,9 +11,9 @@ export default function ListProduct(sortType) {
     useEffect(() => {
         async function prod() {
             const product = await getProduct()
-            const title = product.products.map(a => Object({
-                title: a.title,
-                image: a.images[0],
+            const title = product.map(a => Object({
+                title: a.name,
+                image: a.imageUrl,
                 price: a.price,
                 category: a.category
             }))

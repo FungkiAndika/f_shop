@@ -5,4 +5,6 @@ async function checkCountry() {
         console.log("ERROR IN: checkCountry");
     }
 }
+
+
 export default checkCountry;

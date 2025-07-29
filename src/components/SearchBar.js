@@ -12,12 +12,11 @@ function SearchBar() {
   useEffect(() => {
     async function product() {
       const data = await getProduct();
-      const title = data.products.map((a) => a.title);
-      const desc = data.products.map((a) => a.description);
-      const category = data.products.map((a) => a.category);
-      const tags = data.products.map((a) => a.tags)
-      const brand = data.products.map((a) => a.brand)
-      setSugest([ ...new Set([...title, ...desc, ...category, ...tags, ...brand])])
+      const title = data.map((a) => a.name);
+      const desc = data.map((a) => a.description);
+      const category = data.map((a) => a.category);
+      const brand = data.map((a) => a.brand)
+      setSugest([ ...new Set([...title, ...desc, ...category, ...brand])])
     }
     product();
   }, []);
