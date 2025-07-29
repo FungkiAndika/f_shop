@@ -13,7 +13,7 @@ export default function ListProduct(sortType) {
             const product = await getProduct()
             const title = product.map(a => Object({
                 title: a.name,
-                image: a.imageUrl,
+                image: a.imageUrl[0],
                 price: a.price,
                 category: a.category
             }))
