@@ -8,17 +8,18 @@ export default function ListProduct(sortType) {
     const [userCountry, setUserCountry] = useState([])
     const [priceEx, setPriceEx] = useState([])
     const [currencyCode, setCurrencyCode] = useState([])
+    const [i, setI] = useState(100)
     useEffect(() => {
         async function prod() {
             const product = await getProduct()
-            const title = product.map(a => Object({
+            const data = product.map(a => Object({
                 title: a.name,
                 image: a.imageUrl[0],
                 price: a.price,
                 category: a.category
             }))
             // const image = [...new Set([...product.products.map(a => a.images).map(a => a[0])])]
-            setProduct(title)
+            setProduct(data)
         }
         async function co() {
             const country = await checkCountry();
@@ -31,13 +32,22 @@ export default function ListProduct(sortType) {
             setUserCountry(country)
         }
         
+
+        window.addEventListener('scroll', async function() {
+                if ((window.innerHeight + this.window.scrollY) >= document.body.offsetHeight) {
+                    setI(i + 100)
+                    
+                }
+                
+            })
         co()
         prod()
-    },[sortType]);
-   
+    },[sortType,i]);
+    
+    
     
     if (sortType === "none") {
-        return product.map((a,b) => <div key={b} className={styles.boxProduct}>
+        return product.slice(0,i).map((a,b) => <div key={b} className={styles.boxProduct}>
             <div className={styles.imgPrevContain}>
             <img rel="preload" src={a.image} alt={a.title} className={styles.imgPrev} />
             </div>
@@ -46,7 +56,7 @@ export default function ListProduct(sortType) {
         </div>)
     } else {
         return (
-        product.filter(a => a.category === sortType).map((a,b) => <div key={b} className={styles.boxProduct}>
+        product.filter(a => a.category === sortType).slice(0,i).map((a,b) => <div key={b} className={styles.boxProduct}>
             <div className={styles.imgPrevContain}>
             <img rel="preload" src={a.image} alt={a.title} className={styles.imgPrev} />
             </div>

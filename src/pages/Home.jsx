@@ -6,6 +6,7 @@ import { useState, useEffect } from "react";
 function Home() {
     const [sortType, setSortType] = useState("none");
     const [category, setCategory] = useState([])
+    
     // const [titles, setTitles] = useState([])
     useEffect(() => {
         async function productAPI() {
@@ -20,6 +21,7 @@ function Home() {
             // })
         }
         productAPI()
+        
         
     }, [sortType]);
     return (

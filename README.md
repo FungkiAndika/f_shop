@@ -15,6 +15,7 @@ FShop is a simple e-commerce application built using React. This application inc
 ### 3. **Product Listing**
 - The `ListProduct` component displays a list of products with information such as images, titles, and prices.
 - Product prices are converted to the user's local currency based on their location.
+- Initially, the website display 100 items. Upon scrolling to the end of the list, a additional 100 items are loaded, bringing the total to 200
 
 ### 4. **Product Categories**
 - The main page displays product categories that users can select.
